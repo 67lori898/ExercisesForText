@@ -73,6 +73,7 @@ public class Main {
                     case 2:
                         System.out.println("Inserisci il codice di matricola: ");
                         deleteStd.codiceMatricola = keyboard.nextLine();
+                        deleteByCode(contaStudenti, arrStudents, deleteStd);
                         break;
 
                     case 3:
@@ -86,8 +87,13 @@ public class Main {
                 break;
 
             case 4:
+               int indexSearch=0;
+                System.out.println("Inserisci la posizione del contatto che desidera ricercare: ");
+                indexSearch=keyboard.nextInt();
+
 
                 //Ricerca studente tramitre posizione: for se l'indice esiste return
+                searchByIndex(contaStudenti, arrStudents, indexSearch);
                 break;
 
             default:
@@ -98,6 +104,8 @@ public class Main {
 
 
     }while(fine);
+
+
     }
     public static Studente leggiStudente(Scanner keyboard){
       //Chiediamo all'utente di inserire i suoi dati;
@@ -117,15 +125,26 @@ public class Main {
 
     }
 
+    private static void searchByIndex(int contaStudenti, Studente [] arrStudents, int indexSearch) {
 
+        boolean stateOfSearch = false;
+
+        for (int i = 0; i <= contaStudenti; i++) {
+            if ((i == indexSearch) && (arrStudents[i] != null)) {
+                System.out.println("Il contatto che hai appena cercato esisite, ed è:");
+                System.out.println(arrStudents[i].stampaStd());
+                break;
+            }
+        }
+
+    }
+
+
+        //Uso una variabile booleana che restituisce lo stato oppure semplicemente return true/false}
     //Metodo void perchè non ritorna nessun valore.
+
     public static  void showStds(Studente [] arrStudents,int contaStudenti) {
 
-         /*for(Studente i: arrStudents) {
-             if (i != null) {
-                 i.stampaStd();
-             }
-         }*/
          for(int i=0;i<contaStudenti;i++){
             if(arrStudents[i]!=null) {
                 System.out.println(arrStudents[i].stampaStd());
@@ -167,7 +186,5 @@ public class Main {
          }
 
     }
-
-
 
 }
